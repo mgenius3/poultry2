@@ -1,12 +1,13 @@
+import React from 'react';
 import Layout from '../components/Layout';
-import ProductItem from '../components/ProductItem';
-import data from '../utils/data';
-import Product from '../components/Product';
 import Contact from '../components/Contact';
-export default function Home() {
+export default function AboutScreen() {
   return (
-    <Layout title="Home Page">
-      <section class="overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] card">
+    <Layout title="About Us">
+      <h1 className="text-center text-base capitalize text-xl pt-20 font-bold">
+        About <b style={{ color: 'green' }}>Riere Farm</b>
+      </h1>
+      <section class="overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px]">
         <div class="container mx-auto">
           <div class="-wmx-4 flex flex-wrap items-center justify-between">
             <div class="-full px-4 lg:w-6/12">
@@ -623,19 +624,30 @@ export default function Home() {
                   offer healthy and sustainable poultry products that are
                   ethically raised, delicious, and nutritious.
                 </p>
+                <p class="text-body-color mb-12 text-base">
+                  We take great pride in raising our chickens, turkeys, and
+                  ducks in a natural and humane way, ensuring that they have
+                  plenty of space to move around and access to fresh food and
+                  water.
+                </p>
+                <p class="text-body-color mb-12 text-base">
+                  We are dedicated to providing our customers with exceptional
+                  service and support. Whether you have a question about our
+                  products, need assistance with an order, or simply want to
+                  learn more about poultry farming, our friendly and
+                  knowledgeable team is always here to help.
+                </p>
                 <a
-                  href="/about"
+                  href="javascript:void(0)"
                   class="bg-primary inline-flex items-center justify-center rounded-lg py-4 px-10 text-center text-base font-normal text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
                 >
-                  <button className="primary-button"> More...</button>
+                  Get Started
                 </a>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <Product />
-      <Contact />
     </Layout>
   );
 }
