@@ -1,29 +1,10 @@
-import { signOut, useSession } from 'next-auth/react';
 import Head from 'next/head';
-import Link from 'next/link';
 import { ToastContainer } from 'react-toastify';
 import styles from '../styles/Home.module.css';
-import { Menu, Transition } from '@headlessui/react';
-import { Fragment } from 'react';
-import {
-  ProfileActiveIcon,
-  ProfileInactiveIcon,
-  LogOutActiveIcon,
-  LogOutInactiveIcon,
-} from '../utils/helpers';
-import Carousel from './Product';
 import Nav from './Nav';
 import Footer from './Footer';
 
 export default function Layout({ title, children }) {
-  // const { status, data: session } = useSession();
-
-  // const logoutClickHander = () => {
-  //   signOut({
-  //     callbackUrl: '/login',
-  //   });
-  // };
-
   return (
     <div
       className={

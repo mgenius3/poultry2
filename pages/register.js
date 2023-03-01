@@ -3,14 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { signIn, useSession } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 import Layout from '../components/Layout';
-import { getError } from '../utils/error';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router';
-import bcrypt, { hash } from 'bcryptjs';
+import bcrypt from 'bcryptjs';
 
 export default function LoginScreen() {
-  const { status, data: session } = useSession();
+  const { data: session } = useSession();
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
@@ -66,14 +65,14 @@ export default function LoginScreen() {
   return (
     <Layout title="Register">
       <form onSubmit={handleSubmit(submitHandler)}>
-        <section class="bg-[#F4F7FF] py-20 lg:py-[120px]">
-          <div class="container mx-auto">
-            <div class="-mx-4 flex flex-wrap">
-              <div class="w-full px-4">
-                <div class="relative mx-auto max-w-[525px] overflow-hidden rounded-lg bg-white py-16 px-10 text-center sm:px-12 md:px-[60px]">
-                  <div class="mb-10 text-center md:mb-16">
+        <section className="bg-[#F4F7FF] py-20 lg:py-[120px]">
+          <div className="container mx-auto">
+            <div className="-mx-4 flex flex-wrap">
+              <div className="w-full px-4">
+                <div className="relative mx-auto max-w-[525px] overflow-hidden rounded-lg bg-white py-16 px-10 text-center sm:px-12 md:px-[60px]">
+                  <div className="mb-10 text-center md:mb-16">
                     <a
-                      class="flex items-center tracking-wide no-underline hover:no-underline font-bold text-green-900 text-xl mx-auto inline-block max-w-[160px]"
+                      className="flex items-center tracking-wide no-underline hover:no-underline font-bold text-green-900 text-xl mx-auto inline-block max-w-[160px]"
                       href="#"
                     >
                       <img
@@ -83,7 +82,7 @@ export default function LoginScreen() {
                       <b> Riere Farm</b>
                     </a>
                   </div>
-                  <div class="mb-6">
+                  <div className="mb-6">
                     <input
                       type="text"
                       name="name"
@@ -92,7 +91,7 @@ export default function LoginScreen() {
                       })}
                       placeholder="Name"
                       id="name"
-                      class="bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none"
+                      className="bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none"
                       autoFocus
                     />
                     {errors.name && (
@@ -100,7 +99,7 @@ export default function LoginScreen() {
                     )}
                   </div>
 
-                  <div class="mb-6">
+                  <div className="mb-6">
                     <input
                       type="email"
                       name="email"
@@ -114,14 +113,14 @@ export default function LoginScreen() {
                       })}
                       placeholder="Email"
                       id="email"
-                      class="bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none"
+                      className="bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none"
                       autoFocus
                     />
                     {errors.email && (
                       <div className="text-red-500">{errors.email.message}</div>
                     )}
                   </div>
-                  <div class="mb-6">
+                  <div className="mb-6">
                     <input
                       type="password"
                       name="password"
@@ -133,7 +132,7 @@ export default function LoginScreen() {
                         },
                       })}
                       placeholder="Password"
-                      class="bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none"
+                      className="bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none"
                     />
                     {errors.password && (
                       <div className="text-red-500 ">
@@ -141,7 +140,7 @@ export default function LoginScreen() {
                       </div>
                     )}
                   </div>
-                  <div class="mb-6">
+                  <div className="mb-6">
                     <input
                       type="password"
                       name="cpassword"
@@ -149,7 +148,7 @@ export default function LoginScreen() {
                         required: 'Please confirm password',
                       })}
                       placeholder="confirm password"
-                      class="bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none"
+                      className="bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none"
                     />
                     {errors.cpassword && (
                       <div className="text-red-500 ">
@@ -158,7 +157,7 @@ export default function LoginScreen() {
                     )}
                   </div>
 
-                  <div class="mb-10">
+                  <div className="mb-10">
                     {!loading ? (
                       <button className="primary-button text-lg" type="submit">
                         <b>Register</b>
@@ -174,7 +173,7 @@ export default function LoginScreen() {
                     )}
                   </div>
 
-                  <p class="text-base text-[#adadad]">
+                  <p className="text-base text-[#adadad]">
                     Already a member - &nbsp;
                     <Link href={`/login`}>Login</Link>
                   </p>

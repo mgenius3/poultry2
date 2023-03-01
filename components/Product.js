@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from 'react';
-import Image from 'next/image';
 import data from '../utils/data';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
@@ -11,9 +10,14 @@ export default function Product() {
     if (!e.target.value || e.target.value == '')
       return setNewData(data.products);
     else {
-      let a = data.products.filter((product) =>
-        (product?.name).toLowerCase().includes(e.target.value.toLowerCase())
-      );
+      let a = data.products.filter((product) => {
+        if (
+          product?.name.toLowerCase().includes(e.target.value.toLowerCase()) ==
+          true
+        )
+          return true;
+        return false;
+      });
       setNewData(a);
     }
   };
@@ -21,31 +25,31 @@ export default function Product() {
   return (
     <Fragment>
       {/* section */}
-      <section class="bg-white py-8">
-        <div class="container mx-auto flex items-center flex-wrap pt-4 pb-12 ">
+      <section className="bg-white py-8">
+        <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12 ">
           <nav
             id="store"
-            class="w-full z-30 top-0 px-6 py-1
+            className="w-full z-30 top-0 px-6 py-1
            sh"
           >
-            <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3">
+            <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3">
               <a
-                class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl"
+                className="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl"
                 href="#"
               >
                 Poultry Product
               </a>
 
-              <div class="flex items-center" id="store-nav-content">
+              <div className="flex items-center" id="store-nav-content">
                 <input
                   type="text"
                   placeholder="search"
                   onChange={handleProductData}
                 />
 
-                <a class="pl-3 inline-block no-underline hover:text-black flex items-center">
+                <a className="pl-3 inline-block no-underline hover:text-black flex items-center">
                   <svg
-                    class="fill-current hover:text-black"
+                    className="fill-current hover:text-black"
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
                     height="24"
@@ -58,10 +62,10 @@ export default function Product() {
             </div>
           </nav>
 
-          {newData.map((product) => (
-            <Link href={`/product/${product?.slug}`}>
+          {newData.map((product, i) => (
+            <Link href={`/product/${product?.slug}`} key={i}>
               <div
-                class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col"
+                className="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col"
                 key={product?.slug}
               >
                 <a
@@ -72,25 +76,25 @@ export default function Product() {
                   }
                 >
                   <img
-                    class="hover:grow hover:shadow-lg"
+                    className="hover:grow hover:shadow-lg"
                     src={product?.image}
                   />
                 </a>
-                <div class="pt-3 flex items-center justify-between">
-                  <p class="">{product?.name}</p>{' '}
+                <div className="pt-3 flex items-center justify-between">
+                  <p className="">{product?.name}</p>{' '}
                   <button className="primary-button" type="submit">
                     {' '}
                     Book Now{' '}
                   </button>
                 </div>
-                {/* <p class="text-gray-900">
+                {/* <p className="text-gray-900">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke-width="1.5"
                       stroke="currentColor"
-                      class="w-6 h-6"
+                      className="w-6 h-6"
                     >
                       <path
                         stroke-linecap="round"

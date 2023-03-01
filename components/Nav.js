@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { signOut, useSession } from 'next-auth/react';
-import Head from 'next/head';
 import Link from 'next/link';
-import { ToastContainer } from 'react-toastify';
-import styles from '../styles/Home.module.css';
 import { Menu, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import {
@@ -12,7 +9,6 @@ import {
   LogOutActiveIcon,
   LogOutInactiveIcon,
 } from '../utils/helpers';
-import Carousel from './Product';
 
 export default function Nav() {
   const { status, data: session } = useSession();
@@ -25,9 +21,9 @@ export default function Nav() {
   };
 
   return (
-    <nav id="header" class="w-full z-30 top-0 py-1 shadow-md">
-      <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">
-        <label for="menu-toggle" class="cursor-pointer md:hidden block">
+    <nav id="header" className="w-full z-30 top-0 py-1 shadow-md">
+      <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">
+        <label htmlFor="menu-toggle" className="cursor-pointer md:hidden block">
           {menu ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +42,7 @@ export default function Nav() {
             </svg>
           ) : (
             <svg
-              class="fill-current text-gray-900"
+              className="fill-current text-gray-900"
               xmlns="http://www.w3.org/2000/svg"
               width="20"
               height="20"
@@ -58,45 +54,45 @@ export default function Nav() {
             </svg>
           )}
         </label>
-        <input class="hidden" type="checkbox" id="menu-toggle" />
+        <input className="hidden" type="checkbox" id="menu-toggle" />
 
         <div
-          class="hidden md:flex md:items-center md:w-auto w-full order-3 md:order-1"
+          className="hidden md:flex md:items-center md:w-auto w-full order-3 md:order-1"
           id="menu"
         >
           <nav>
-            <ul class="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
+            <ul className="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
               <li>
-                <a
-                  class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
+                <Link
+                  className="inline-block no-underline hover:text-black hover:underline py-2 px-4"
                   href="/contact"
                 >
                   <b> Contact</b>
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
+                <Link
+                  className="inline-block no-underline hover:text-black hover:underline py-2 px-4"
                   href="/about"
                 >
                   <b> About</b>
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
+                <Link
+                  className="inline-block no-underline hover:text-black hover:underline py-2 px-4"
                   href="/product"
                 >
                   <b>Product</b>
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
         </div>
 
-        <div class="order-1 md:order-2">
-          <a
-            class="flex items-center tracking-wide no-underline hover:no-underline font-bold text-green-900 text-xl "
+        <div className="order-1 md:order-2">
+          <Link
+            className="flex items-center tracking-wide no-underline hover:no-underline font-bold text-green-900 text-xl "
             href="#"
           >
             <img
@@ -104,25 +100,28 @@ export default function Nav() {
               width={30}
             />
             Riere Farm
-          </a>
+          </Link>
         </div>
 
-        <div class="order-2 md:order-3 flex items-center z-30" id="nav-content">
+        <div
+          className="order-2 md:order-3 flex items-center z-30"
+          id="nav-content"
+        >
           {status === 'loading' ? (
             'loading...'
           ) : session?.user ? (
             <Menu as="div" className="relative inline-block text-left">
               <div>
                 <Menu.Button className="inline-flex w-full justify-center rounded-md  px-4 py-2 text-sm font-medium hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 ">
-                  <a
-                    class="inline-block no-underline hover:text-black"
+                  <Link
+                    className="inline-block no-underline hover:text-black"
                     href="#"
                   >
                     <img
                       src="https://img.icons8.com/ios-filled/50/null/guest-male--v1.png"
                       width={20}
                     />
-                  </a>
+                  </Link>
                   <small>{session.user.name}</small>
                 </Menu.Button>
               </div>
@@ -191,9 +190,9 @@ export default function Nav() {
             </Menu>
           ) : (
             <Link href="/login">
-              <a className="p-2 primary-button">
+              <Link className="p-2 primary-button">
                 <b>Login</b>
-              </a>
+              </Link>
             </Link>
           )}
         </div>

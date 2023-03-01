@@ -30,7 +30,7 @@ export default function ProductScreen() {
         </Link>
       </div>
       <div className="grid md:grid-cols-4 md:gap-3">
-        <div classname="md:col-span-2">
+        <div className="md:col-span-2">
           <Image
             src={product.image}
             alt={product.name}

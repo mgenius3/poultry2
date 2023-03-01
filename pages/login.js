@@ -47,14 +47,14 @@ export default function LoginScreen() {
   return (
     <Layout title="Login">
       <form onSubmit={handleSubmit(submitHandler)}>
-        <section class="bg-[#F4F7FF] py-20 lg:py-[120px]">
-          <div class="container mx-auto">
-            <div class="-mx-4 flex flex-wrap">
-              <div class="w-full px-4">
-                <div class="relative mx-auto max-w-[525px] overflow-hidden rounded-lg bg-white py-16 px-10 text-center sm:px-12 md:px-[60px]">
-                  <div class="mb-10 text-center md:mb-16">
+        <section className="bg-[#F4F7FF] py-20 lg:py-[120px]">
+          <div className="container mx-auto">
+            <div className="-mx-4 flex flex-wrap">
+              <div className="w-full px-4">
+                <div className="relative mx-auto max-w-[525px] overflow-hidden rounded-lg bg-white py-16 px-10 text-center sm:px-12 md:px-[60px]">
+                  <div className="mb-10 text-center md:mb-16">
                     <a
-                      class="flex items-center tracking-wide no-underline hover:no-underline font-bold text-green-900 text-xl mx-auto inline-block max-w-[160px]"
+                      className="flex items-center tracking-wide no-underline hover:no-underline font-bold text-green-900 text-xl mx-auto inline-block max-w-[160px]"
                       href="#"
                     >
                       <img
@@ -64,7 +64,7 @@ export default function LoginScreen() {
                       Riere Farm
                     </a>
                   </div>
-                  <div class="mb-6">
+                  <div className="mb-6">
                     <input
                       type="email"
                       name="email"
@@ -78,14 +78,14 @@ export default function LoginScreen() {
                       })}
                       placeholder="Email"
                       id="email"
-                      class="bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none"
+                      className="bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none"
                       autoFocus
                     />
                     {errors.email && (
                       <div className="text-red-500">{errors.email.message}</div>
                     )}
                   </div>
-                  <div class="mb-6">
+                  <div className="mb-6">
                     <input
                       type="password"
                       name="password"
@@ -97,7 +97,7 @@ export default function LoginScreen() {
                         },
                       })}
                       placeholder="Password"
-                      class="bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none"
+                      className="bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none"
                     />
                     {errors.password && (
                       <div className="text-red-500 ">
@@ -105,7 +105,7 @@ export default function LoginScreen() {
                       </div>
                     )}
                   </div>
-                  <div class="mb-10">
+                  <div className="mb-10">
                     {!loading ? (
                       <button className="primary-button text-lg" type="submit">
                         <b>Login</b>
@@ -120,12 +120,12 @@ export default function LoginScreen() {
                       </button>
                     )}
                   </div>
-                  {/* <p class="mb-6 text-base text-[#adadad]">Connect With</p> */}
-                  {/* <ul class="-mx-2 mb-12 flex justify-between">
-                    <li class="w-full px-2">
+                  {/* <p className="mb-6 text-base text-[#adadad]">Connect With</p> */}
+                  {/* <ul className="-mx-2 mb-12 flex justify-between">
+                    <li className="w-full px-2">
                       <a
                         href="javascript:void(0)"
-                        class="flex h-11 items-center justify-center rounded-md bg-[#4064AC] hover:bg-opacity-90"
+                        className="flex h-11 items-center justify-center rounded-md bg-[#4064AC] hover:bg-opacity-90"
                       >
                         <svg
                           width="10"
@@ -141,10 +141,10 @@ export default function LoginScreen() {
                         </svg>
                       </a>
                     </li>
-                    <li class="w-full px-2">
+                    <li className="w-full px-2">
                       <a
                         href="javascript:void(0)"
-                        class="flex h-11 items-center justify-center rounded-md bg-[#1C9CEA] hover:bg-opacity-90"
+                        className="flex h-11 items-center justify-center rounded-md bg-[#1C9CEA] hover:bg-opacity-90"
                       >
                         <svg
                           width="22"
@@ -160,10 +160,10 @@ export default function LoginScreen() {
                         </svg>
                       </a>
                     </li>
-                    <li class="w-full px-2">
+                    <li className="w-full px-2">
                       <a
                         href="javascript:void(0)"
-                        class="flex h-11 items-center justify-center rounded-md bg-[#D64937] hover:bg-opacity-90"
+                        className="flex h-11 items-center justify-center rounded-md bg-[#D64937] hover:bg-opacity-90"
                       >
                         <svg
                           width="18"
@@ -182,18 +182,18 @@ export default function LoginScreen() {
                   </ul> */}
                   {/* <a
                     href="javascript:void(0)"
-                    class="mb-2 inline-block text-base text-[#adadad] hover:text-primary hover:underline"
+                    className="mb-2 inline-block text-base text-[#adadad] hover:text-primary hover:underline"
                   >
                     Forget Password?
                   </a> */}
-                  <p class="text-base text-[#adadad]">
+                  <p className="text-base text-[#adadad]">
                     Don&apos;t have an account? &nbsp;
                     <Link href={`/register?redirect=${redirect || '/'}`}>
                       Register
                     </Link>
                   </p>
                   {/* <div>
-                    <span class="absolute top-1 right-1">
+                    <span className="absolute top-1 right-1">
                       <svg
                         width="40"
                         height="40"
@@ -315,7 +315,7 @@ export default function LoginScreen() {
                         />
                       </svg>
                     </span>
-                    <span class="absolute left-1 bottom-1">
+                    <span className="absolute left-1 bottom-1">
                       <svg
                         width="29"
                         height="40"

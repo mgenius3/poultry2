@@ -1,5 +1,4 @@
 import User from '../../models/User';
-import data from '../../utils/data';
 import db from '../../utils/db';
 
 export default async function handler(req, res) {
@@ -29,7 +28,7 @@ export default async function handler(req, res) {
     }
   } else {
     res.setHeader('Allow', ['POST']);
-    <span class="badge badge-primary"></span>;
+    <span className="badge badge-primary"></span>;
     res.status(405).json({ message: `Method ${req.method} not allowed` });
   }
 }

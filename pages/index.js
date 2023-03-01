@@ -1,40 +1,39 @@
 import Layout from '../components/Layout';
-import ProductItem from '../components/ProductItem';
-import data from '../utils/data';
 import Product from '../components/Product';
 import Contact from '../components/Contact';
+import Link from 'next/link';
 export default function Home() {
   return (
     <Layout title="Home Page">
-      <section class="overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] card">
-        <div class="container mx-auto">
-          <div class="-wmx-4 flex flex-wrap items-center justify-between">
-            <div class="-full px-4 lg:w-6/12">
-              <div class="-mx-3 flex items-center sm:-mx-4">
-                <div class="w-full px-3 sm:px-4 xl:w-1/2">
-                  <div class="py-3 sm:py-4">
+      <section className="overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] card">
+        <div className="container mx-auto">
+          <div className="-wmx-4 flex flex-wrap items-center justify-between">
+            <div className="-full px-4 lg:w-6/12">
+              <div className="-mx-3 flex items-center sm:-mx-4">
+                <div className="w-full px-3 sm:px-4 xl:w-1/2">
+                  <div className="py-3 sm:py-4">
                     <img
                       src="/images/artem-beliaikin-Mpm69Pad_-8-unsplash (1).jpg"
                       alt=""
-                      class="w-full rounded-2xl"
+                      className="w-full rounded-2xl"
                     />
                   </div>
-                  <div class="py-3 sm:py-4">
+                  <div className="py-3 sm:py-4">
                     <img
                       src="/images/Brown-eggs.webp"
                       alt=""
-                      class="w-full rounded-2xl"
+                      className="w-full rounded-2xl"
                     />
                   </div>
                 </div>
-                <div class="w-full px-3 sm:px-4 xl:w-1/2">
-                  <div class="relative z-10 my-4">
+                <div className="w-full px-3 sm:px-4 xl:w-1/2">
+                  <div className="relative z-10 my-4">
                     <img
                       src="/images/Mature-broilers.jpg"
                       alt=""
-                      class="w-full rounded-2xl"
+                      className="w-full rounded-2xl"
                     />
-                    <span class="absolute -right-7 -bottom-7 z-[-1]">
+                    <span className="absolute -right-7 -bottom-7 z-[-1]">
                       <svg
                         width="134"
                         height="106"
@@ -608,27 +607,27 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div class="w-full px-4 lg:w-1/2 xl:w-5/12">
-              <div class="mt-10 lg:mt-0">
-                <span class="text-primary mb-2 block text-lg font-semibold">
+            <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
+              <div className="mt-10 lg:mt-0">
+                <span className="text-primary mb-2 block text-lg font-semibold">
                   Why Choose Us
                 </span>
-                <h2 class="text-dark mb-8 text-3xl font-bold sm:text-4xl">
+                <h2 className="text-dark mb-8 text-3xl font-bold sm:text-4xl">
                   Make your customers happy by giving services.
                 </h2>
-                <p class="text-body-color mb-8 text-base">
+                <p className="text-body-color mb-8 text-base">
                   Welcome to our poultry website, where we are passionate about
                   providing you with high-quality poultry products and sharing
                   our expertise on all things poultry-related. Our mission is to
                   offer healthy and sustainable poultry products that are
                   ethically raised, delicious, and nutritious.
                 </p>
-                <a
+                <Link
                   href="/about"
-                  class="bg-primary inline-flex items-center justify-center rounded-lg py-4 px-10 text-center text-base font-normal text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
+                  className="bg-primary inline-flex items-center justify-center rounded-lg py-4 px-10 text-center text-base font-normal text-white hover:bg-opacity-90 lg:px-8 xl:px-10s"
                 >
                   <button className="primary-button"> More...</button>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
