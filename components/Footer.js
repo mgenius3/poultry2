@@ -48,15 +48,17 @@ export default function Footer() {
                   href="https://wa.me/2349074260247"
                   className="flex items-center text-sm font-medium"
                 >
-                  <span className="text-primary mr-3">
-                    <img
-                      src="https://img.icons8.com/ios/50/null/whatsapp--v1.png"
-                      width={20}
-                    />
-                  </span>
-                  <span>
-                    <b>09074260247</b>
-                  </span>
+                  <div>
+                    <span className="text-primary mr-3">
+                      <img
+                        src="https://img.icons8.com/ios/50/null/whatsapp--v1.png"
+                        width={20}
+                      />
+                    </span>
+                    <span>
+                      <b>09074260247</b>
+                    </span>
+                  </div>
                 </Link>
               </p>
             </div>
