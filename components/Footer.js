@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4 sm:w-2/3 lg:w-3/12">
             <div className="mb-10 w-full">
-              <Link
+              <span
                 className="flex items-center tracking-wide no-underline hover:no-underline font-bold text-green-900 text-xl "
                 href="#"
               >
@@ -16,7 +16,7 @@ export default function Footer() {
                   width={30}
                 />
                 Riere Farm
-              </Link>
+              </span>
               <p className="text-body-color mb-7 text-base inline">
                 <img
                   src="https://img.icons8.com/ios/50/null/region-code.png"

@@ -91,16 +91,13 @@ export default function Nav() {
         </div>
 
         <div className="order-1 md:order-2">
-          <Link
-            className="flex items-center tracking-wide no-underline hover:no-underline font-bold text-green-900 text-xl "
-            href="#"
-          >
+          <span className="flex items-center tracking-wide no-underline hover:no-underline font-bold text-green-900 text-xl ">
             <img
               src="https://img.icons8.com/ios-filled/50/null/chicken.png"
               width={30}
             />
             Riere Farm
-          </Link>
+          </span>
         </div>
 
         <div
