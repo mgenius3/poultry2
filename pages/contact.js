@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import Layout from '../components/Layout';
 import Contact from '../components/Contact';
-import Link from 'next/link';
 export default function ContactScreen() {
   return (
     <Fragment>
