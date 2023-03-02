@@ -18,15 +18,15 @@ export default function ProductScreen() {
   return (
     <Layout title={product.name}>
       <div className="py-2">
-        <Link href="/">
-          <span className="flex align-center justify-center secondary-button w-20 p-2">
+        <Link href={`/`}>
+          <a className="flex align-center justify-center secondary-button w-20 p-2">
             <img
               src="https://img.icons8.com/ios/50/null/home-page.png"
               width={20}
               className="mx-1"
             />{' '}
             <b> Home</b>
-          </span>
+          </a>
         </Link>
       </div>
       <div className="grid md:grid-cols-4 md:gap-3">
@@ -73,13 +73,13 @@ export default function ProductScreen() {
                 <li>
                   <h1 className="text-lg">
                     <b>Product Name: </b>
-                    <small>{product.name}</small>
+                    <small>{product?.name}</small>
                   </h1>
                 </li>
 
                 <li>
                   <b>Description: </b>
-                  <small>{`${product.description}`}</small>
+                  <small>{`Get it now at a affordable price`}</small>
                 </li>
                 <li>
                   <b>Status: </b>
@@ -88,17 +88,19 @@ export default function ProductScreen() {
               </ul>
             </div>
 
-            <a
+            <Link
               href={
                 session?.user
                   ? `https://wa.me/2347032273102/?text=poultry: ${product?.name}`
                   : '/login'
               }
             >
-              <button className="primary-button w-full h-10 text-lg">
-                Book Now
-              </button>{' '}
-            </a>
+              <a>
+                <button className="primary-button w-full h-10 text-lg">
+                  Book Now
+                </button>
+              </a>
+            </Link>
           </div>
         </div>
       </div>

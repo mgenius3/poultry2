@@ -612,7 +612,7 @@ export default function Home() {
               <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
                 <div className="mt-10 lg:mt-0">
                   <span className="text-primary mb-2 block text-lg font-semibold">
-                    Why Choose Us
+                    About Us
                   </span>
                   <h2 className="text-dark mb-8 text-3xl font-bold sm:text-4xl">
                     Make your customers happy by giving services.

@@ -62,7 +62,7 @@ export default function Nav() {
         >
           <nav>
             <ul className="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
-              <li>
+              <li className="m-3 cursor-pointer">
                 <Link
                   className="inline-block no-underline hover:text-black hover:underline py-2 px-4 cursor-pointer"
                   href="/contact"
@@ -70,7 +70,7 @@ export default function Nav() {
                   <b> Contact</b>
                 </Link>
               </li>
-              <li>
+              <li className="m-3 cursor-pointer">
                 <Link
                   className="inline-block no-underline hover:text-black hover:underline py-2 px-4 cursor-pointer"
                   href="/about"
@@ -78,7 +78,7 @@ export default function Nav() {
                   <b> About</b>
                 </Link>
               </li>
-              <li>
+              <li className="m-3 cursor-pointer">
                 <Link
                   className="inline-block no-underline hover:text-black hover:underline py-2 px-4 cursor-pointer"
                   href="/product"
@@ -187,9 +187,9 @@ export default function Nav() {
             </Menu>
           ) : (
             <Link href="/login">
-              <Link className="p-2 primary-button">
+              <a className="p-2 primary-button">
                 <b>Login</b>
-              </Link>
+              </a>
             </Link>
           )}
         </div>
