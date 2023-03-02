@@ -64,6 +64,14 @@ export default function Nav() {
             <ul className="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
               <li className="m-3 cursor-pointer">
                 <Link
+                  className="flex align-center justify-center secondary-button w-20 p-2"
+                  href="/"
+                >
+                  <b> Home</b>
+                </Link>
+              </li>
+              <li className="m-3 cursor-pointer">
+                <Link
                   className="inline-block no-underline hover:text-black hover:underline py-2 px-4 cursor-pointer"
                   href="/contact"
                 >

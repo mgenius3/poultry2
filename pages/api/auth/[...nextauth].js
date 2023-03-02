@@ -23,27 +23,20 @@ export default NextAuth({
   providers: [
     CredentialsProvider({
       async authorize(credentials) {
-        try {
-          await db.connect();
-          const user = await User.findOne({
-            email: credentials.email,
-          });
-          await db.disconnect();
-          if (
-            user &&
-            bcryptjs.compareSync(credentials.password, user.password)
-          ) {
-            return {
-              _id: user._id,
-              name: user.name,
-              email: user.email,
-              isAdmin: user.isAdmin,
-            };
-          }
-          throw new Error('Invalid email or password');
-        } catch (err) {
-          return { message: err.message };
+        await db.connect();
+        const user = await User.findOne({
+          email: credentials.email,
+        });
+        await db.disconnect();
+        if (user && bcryptjs.compareSync(credentials.password, user.password)) {
+          return {
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin,
+          };
         }
+        throw new Error('Invalid email or password');
       },
     }),
   ],
