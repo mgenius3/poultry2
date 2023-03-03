@@ -615,7 +615,7 @@ export default function AboutScreen() {
                     Why Choose Us
                   </span>
                   <h2 className="text-dark mb-8 text-3xl font-bold sm:text-4xl">
-                    Make your customers happy by giving services.
+                    Make Our customers happy by giving services.
                   </h2>
                   <p className="text-body-color mb-8 text-base">
                     Welcome to our poultry website, where we are passionate

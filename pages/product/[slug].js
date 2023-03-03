@@ -15,6 +15,16 @@ export default function ProductScreen() {
   if (!product) {
     return <div>Product Not Found</div>;
   }
+
+  const bookNow = async (id, name, productName) => {
+    await fetch('/api/order', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id, name, productName }),
+    });
+  };
   return (
     <Layout title={product.name}>
       <div className="py-2">
@@ -96,7 +106,18 @@ export default function ProductScreen() {
               }
             >
               <a>
-                <button className="primary-button w-full h-10 text-lg">
+                <button
+                  className="primary-button w-full h-10 text-lg"
+                  onClick={() =>
+                    session?.user
+                      ? bookNow(
+                          session?.user._id,
+                          session?.user.name,
+                          product?.name
+                        )
+                      : null
+                  }
+                >
                   Book Now
                 </button>
               </a>

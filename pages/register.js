@@ -51,6 +51,7 @@ export default function LoginScreen() {
             password,
           });
           toast.success('User registered successfully');
+          router.push('/');
         } else {
           setLoading(false);
           const { message } = await res.json();

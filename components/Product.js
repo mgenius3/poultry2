@@ -5,7 +5,6 @@ import { useSession } from 'next-auth/react';
 export default function Product() {
   const [newData, setNewData] = useState(data.products);
 
-  console.log(newData);
   const { data: session } = useSession();
 
   const handleProductData = (e) => {

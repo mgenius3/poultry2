@@ -15,7 +15,7 @@ export default async function handler(req, res) {
       res.status(500).json({ message: 'Server error' });
     }
   } else {
-    res.setHeader('Allow', ['POST']);
+    res.setHeader('Allow', ['GET']);
     <span className="badge badge-primary"></span>;
     res.status(405).json({ message: `Method ${req.method} not allowed` });
   }

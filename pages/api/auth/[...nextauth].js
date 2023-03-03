@@ -27,6 +27,7 @@ export default NextAuth({
         const user = await User.findOne({
           email: credentials.email,
         });
+        console.log(user);
         await db.disconnect();
         if (user && bcryptjs.compareSync(credentials.password, user.password)) {
           return {
@@ -38,7 +39,7 @@ export default NextAuth({
         }
         throw new Error('Invalid email or password');
       },
-      secret: process.env.NEXTAUTH_SECRET,
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
 });
