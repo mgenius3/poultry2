@@ -3,16 +3,13 @@ import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { Menu, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
-import {
-  ProfileActiveIcon,
-  ProfileInactiveIcon,
-  LogOutActiveIcon,
-  LogOutInactiveIcon,
-} from '../utils/helpers';
+import { LogOutActiveIcon, LogOutInactiveIcon } from '../utils/helpers';
+import { useRouter } from 'next/router';
 
 export default function Nav() {
   const { status, data: session } = useSession();
   const [menu, setMenu] = useState(false);
+  const router = useRouter();
 
   const logoutClickHander = () => {
     signOut({
@@ -141,29 +138,27 @@ export default function Nav() {
               >
                 <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                   <div className="px-1 py-1 ">
-                    <Menu.Item>
-                      {({ active }) => (
-                        <button
-                          className={`${
-                            active
-                              ? 'bg-violet-500 text-white'
-                              : 'text-gray-900'
-                          } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                        >
-                          {active ? (
-                            <ProfileActiveIcon
-                              className="mr-2 h-5 w-5"
-                              aria-hidden="true"
+                    {session?.user?.isAdmin ? (
+                      <Menu.Item>
+                        {({ active }) => (
+                          <button
+                            onClick={() => router.push('/admin/user')}
+                            className={`${
+                              active
+                                ? 'bg-violet-500 text-white'
+                                : 'text-gray-900'
+                            } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                          >
+                            <img
+                              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAc0lEQVR4nOVUQQrAMAzyefn/E9xD3GUrO6xjCoV2E3qKQapJgC+hAGwAdPN41BNuAzsNujQm3Iaz+KYmg/tTAY7OoB5EulMUfdvBcAEavlayaI6vTEJ2oCnzKsNXJQKOr1r+VGhKARoZMNkDZ9EqOXZrYgcpidAVyoA/hAAAAABJRU5ErkJggg=="
+                              width={20}
                             />
-                          ) : (
-                            <ProfileInactiveIcon
-                              className="mr-2 h-5 w-5"
-                              aria-hidden="true"
-                            />
-                          )}
-                        </button>
-                      )}
-                    </Menu.Item>
+                            Dashboard
+                          </button>
+                        )}
+                      </Menu.Item>
+                    ) : null}
+
                     <Menu.Item>
                       {({ active }) => (
                         <button

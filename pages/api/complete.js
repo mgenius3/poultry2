@@ -8,12 +8,13 @@ export default async function handler(req, res) {
     try {
       //save to db
       let update = await Order.findOneAndUpdate(
-        { id },
+        { _id: id },
         {
           status: 'complete',
         }
       );
 
+      console.log(update);
       if (update) res.status(200).json({ message: 'update successfully' });
       else {
         res.status(404).json({ message: 'update unsuccessful' });

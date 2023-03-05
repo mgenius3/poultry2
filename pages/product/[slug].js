@@ -49,21 +49,7 @@ export default function ProductScreen() {
             layout="responsive"
           ></Image>
         </div>
-        {/* <div>
-          <ul>
-            <li>
-              <h1 className="text-lg">{session?.user.name}</h1>
-            </li>
-            <li>
-              <h1 className="text-lg">{session?.user.email}</h1>
-            </li>
-            <li>
-              <h1 className="text-lg">{product.name}</h1>
-            </li>
 
-            <li>Description: {`${product.description}`}</li>
-          </ul>
-        </div> */}
         <div>
           <div className="card p-5">
             <div>
@@ -101,7 +87,7 @@ export default function ProductScreen() {
             <Link
               href={
                 session?.user
-                  ? `https://wa.me/2347032273102/?text=poultry: ${product?.name}`
+                  ? `https://wa.me/2347032273102/?text=${session?.user.email}: ${product?.name} -> (order)`
                   : '/login'
               }
             >

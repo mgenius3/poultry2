@@ -30,9 +30,11 @@ export default function LoginScreen() {
     setLoading(true);
     if (password !== cpassword) {
       toast.error('confirm password must be same with password');
-    } else if (!name || !email || !password || !cpassword)
+      setLoading(false);
+    } else if (!name || !email || !password || !cpassword) {
       toast.error('Please fill all the field above');
-    else {
+      setLoading(false);
+    } else {
       //HASH PASSWORD
       const hash_password = bcrypt.hashSync(password);
       try {
@@ -90,9 +92,14 @@ export default function LoginScreen() {
                           type="text"
                           name="name"
                           {...register('name', {
-                            required: 'Please enter name',
+                            required: 'Please enter username',
+                            maxLength: {
+                              value: 8,
+                              message:
+                                'username should not more than 8 letters',
+                            },
                           })}
-                          placeholder="Name"
+                          placeholder="user name"
                           id="name"
                           className="bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none focus:border-primary focus-visible:shadow-none"
                           autoFocus

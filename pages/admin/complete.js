@@ -10,7 +10,6 @@ export default function AdminUserScreen() {
       const response = await fetch('/api/order');
       if (response.status == 200) {
         const { data } = await response.json();
-        console.log(data);
         setData(() => data.filter((a) => a.status == 'complete'));
       }
     }

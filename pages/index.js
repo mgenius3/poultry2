@@ -7,7 +7,13 @@ export default function Home() {
   return (
     <Fragment>
       <Layout title="Home Page">
-        <section className="overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] card">
+        <section
+          className="overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] card"
+          style={{
+            background:
+              'linear-gradient(90deg, rgb(101 65 29) 0%, rgba(103, 201, 75, 0) 35%, rgb(34 197 94 / 34%) 100%)',
+          }}
+        >
           <div className="container mx-auto">
             <div className="-wmx-4 flex flex-wrap items-center justify-between">
               <div className="-full px-4 lg:w-6/12">

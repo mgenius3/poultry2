@@ -9,6 +9,7 @@ export default function AdminUserScreen() {
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
+
   useEffect(() => {
     async function fetchData() {
       const response = await fetch('/api/order');
@@ -21,6 +22,7 @@ export default function AdminUserScreen() {
   }, []);
 
   const completeBook = async (id) => {
+    console.log(id);
     setLoading(true);
     try {
       let updateOrder = await fetch('/api/complete', {
@@ -35,8 +37,12 @@ export default function AdminUserScreen() {
         setLoading(false);
         toast.success('updated successfully');
         router.push('/admin/complete');
-      } else toast.error('unable to update, try again');
+      } else {
+        setLoading(false);
+        toast.error('unable to update, try again');
+      }
     } catch (err) {
+      setLoading(false);
       toast.error('server error, try again later');
     }
   };
@@ -70,7 +76,7 @@ export default function AdminUserScreen() {
                     {data?.map((order, i) => (
                       <tr key={i}>
                         <td className="text-dark border-b border-l border-[#E8E8E8] bg-[#F3F6FF] py-2 px-1 text-center text-base font-medium">
-                          <small> {order?.id}</small>
+                          <small> {order?._id}</small>
                         </td>
                         <td className="text-dark border-b border-l border-[#E8E8E8] bg-[#F3F6FF] py-2 px-1 text-center text-base font-medium">
                           <small> {order?.name}</small>
@@ -84,29 +90,28 @@ export default function AdminUserScreen() {
                           </small>
                         </td>
                         <td className="text-dark border-b border-[#E8E8E8] bg-white py-2 px-1 text-center text-base font-medium">
-                          {!loading ? (
-                            <button
-                              className={`${
-                                order.status == 'pending'
-                                  ? 'primary-button'
-                                  : 'secondary-button'
-                              }`}
-                              disabled={`${
-                                order.status == 'pending' ? false : true
-                              }`}
-                              onClick={() => completeBook(order?.id)}
-                            >
-                              {order?.status}
-                            </button>
-                          ) : (
-                            <button className="bg-slate-400">loading</button>
-                          )}
+                          <button
+                            className={`${
+                              order.status == 'pending'
+                                ? 'primary-button cursor-pointer'
+                                : 'secondary-button'
+                            }`}
+                            disabled={order?.status == 'pending' ? false : true}
+                            onClick={() => completeBook(order?._id)}
+                          >
+                            {order?.status}
+                          </button>
                         </td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
+              {!loading ? null : (
+                <b>
+                  <small>Loading ...</small>
+                </b>
+              )}
             </div>
           </div>
         </div>
