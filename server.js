@@ -15,7 +15,7 @@ app.prepare().then(() => {
       const parsedUrl = parse(req.url, true);
       const { pathname, query } = parsedUrl;
 
-      if (pathname === ` /api/auth/*`) {
+      if (pathname) {
         await app.render(req, res, '/api/auth/[...nextauth]', query);
       } else if (pathname) {
         await app.render(req, res, pathname, query);
