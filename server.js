@@ -1,4 +1,4 @@
-const { createServer } = require('http');
+const { createServer } = require('https');
 const { parse } = require('url');
 const next = require('next');
 
@@ -23,9 +23,7 @@ app.prepare().then(() => {
         await handle(req, res, parsedUrl);
       }
     } catch (err) {
-      console.error('Error occurred handling', req.url, err);
-      res.statusCode = 500;
-      res.end('internal server error', err);
+      res.status(200).json({ msg: err });
     }
   }).listen(port, (err) => {
     if (err) throw err;

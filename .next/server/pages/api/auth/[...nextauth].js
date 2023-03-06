@@ -102,7 +102,6 @@ var db = __webpack_require__(4323);
                 const user = await User/* default.findOne */.Z.findOne({
                     email: credentials.email
                 });
-                console.log(user);
                 await db/* default.disconnect */.Z.disconnect();
                 if (user && external_bcryptjs_default().compareSync(credentials.password, user.password)) {
                     return {

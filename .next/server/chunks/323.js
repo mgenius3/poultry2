@@ -15,19 +15,16 @@ exports.modules = {
 const connection = {};
 async function connect() {
     if (connection.isConnected) {
-        console.log("already connected");
         return;
     }
     if ((mongoose__WEBPACK_IMPORTED_MODULE_0___default().connections.length) > 0) {
         connection.isConnected = (mongoose__WEBPACK_IMPORTED_MODULE_0___default().connections[0].readyState);
         if (connection.isConnected === 1) {
-            console.log("use previous connection");
             return;
         }
         await mongoose__WEBPACK_IMPORTED_MODULE_0___default().disconnect();
     }
     const db =  true ? await mongoose__WEBPACK_IMPORTED_MODULE_0___default().connect(process.env.MONGODB_URI) : 0;
-    console.log("new connection");
     connection.isConnected = db.connections[0].readyState;
 }
 async function disconnect() {
