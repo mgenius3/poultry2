@@ -15,15 +15,15 @@ app.prepare().then(() => {
       const parsedUrl = parse(req.url, true);
       const { pathname, query } = parsedUrl;
 
-      if (pathname === '/a') {
-        await app.render(req, res, '/a', query);
-      } else if (pathname === '/b') {
-        await app.render(req, res, '/b', query);
+      if (pathname === ` /api/auth/*`) {
+        await app.render(req, res, '/api/auth/[...nextauth]', query);
+      } else if (pathname) {
+        await app.render(req, res, pathname, query);
       } else {
         await handle(req, res, parsedUrl);
       }
     } catch (err) {
-      res.status(200).json({ msg: err });
+      res.status(500).json({ msg: err });
     }
   }).listen(port, (err) => {
     if (err) throw err;
