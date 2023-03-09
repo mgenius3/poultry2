@@ -14,15 +14,7 @@ app.prepare().then(() => {
   createServer(async (req, res) => {
     try {
       const parsedUrl = parse(req.url, true);
-      const { pathname, query } = parsedUrl;
-
-      console.log(pathname);
-      console.log(process.env.NODE_ENV);
-      console.log(
-        decode(
-          'Minified React error #31; visit https://reactjs.org/docs/error-decoder.html?invariant=31&args[]=%5Bobject%20Promise%5D for the full message or use the non-minified dev environment for full errors and additional helpful warnings'
-        )
-      );
+      // const { pathname, query } = parsedUrl;
       // if (pathname) {
       //   console.log(pathname);
       //   let a = await app.render(req, res, pathname, query);
