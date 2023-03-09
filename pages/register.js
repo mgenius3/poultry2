@@ -94,7 +94,7 @@ export default function LoginScreen() {
                           {...register('name', {
                             required: 'Please enter username',
                             maxLength: {
-                              value: 8,
+                              value: 10,
                               message:
                                 'username should not more than 8 letters',
                             },

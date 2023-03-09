@@ -4519,6 +4519,11 @@ react-dom@18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
+react-error-decoder@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/react-error-decoder/-/react-error-decoder-2.0.2.tgz#0dc8781628c1dd8fcbefbe78391c1eaf07c20345"
+  integrity sha512-4HYMFrCRxuDvvmDONqKQe/1WMutvdLPvDo4MBYDqvg7RkEt3/lKf5sWI/HAasKxbGML36lWpmm6UPdjxMFBn/w==
+
 react-hook-form@^7.43.2:
   version "7.43.2"
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.43.2.tgz#d8ff71956dc3de258dce19d4b1c7e1c6a0188e67"
