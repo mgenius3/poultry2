@@ -96,7 +96,7 @@ export default function LoginScreen() {
                             maxLength: {
                               value: 10,
                               message:
-                                'username should not more than 8 letters',
+                                'username should not be more than 10 letters',
                             },
                           })}
                           placeholder="user name"
