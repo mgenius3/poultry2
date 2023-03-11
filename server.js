@@ -1,10 +1,9 @@
 const { createServer } = require('http');
 const { parse } = require('url');
 const next = require('next');
-const { decode } = require('react-error-decoder');
 
 const dev = process.env.NODE_ENV !== 'production';
-const hostname = 'localhost';
+const hostname = 'rierefarm.com.ng';
 const port = process.env.PORT || 3000;
 
 const app = next({ dev, hostname, port });
