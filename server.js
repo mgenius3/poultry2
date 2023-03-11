@@ -26,7 +26,7 @@ app.prepare().then(() => {
       // }
       await handle(req, res, parsedUrl);
     } catch (err) {
-      res.status(500).json({ msg: err });
+      res.json({ msg: err });
     }
   }).listen(port, (err) => {
     if (err) throw err;
