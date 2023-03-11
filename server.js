@@ -1,10 +1,10 @@
-const { createServer } = require('https');
+const { createServer } = require('http');
 const { parse } = require('url');
 const next = require('next');
 
 const dev = process.env.NODE_ENV !== 'production';
 const hostname = 'rierefarm.com.ng';
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 const app = next({ dev, hostname, port, dir: '.', conf: { distDir: '.next' } });
 const handle = app.getRequestHandler();
