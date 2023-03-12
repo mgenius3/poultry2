@@ -1,25 +1,17 @@
 import Link from 'next/link';
-import React, { Fragment, useEffect, useState } from 'react';
-import { signIn, useSession } from 'next-auth/react';
+import React, { Fragment, useState } from 'react';
+// import { signIn, useSession } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 import Layout from '../components/Layout';
-import { getError } from '../utils/error';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router';
 
 export default function LoginScreen() {
   const [loading, setLoading] = useState(false);
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
 
   const router = useRouter();
-  const { redirect } = router.query;
-
-  useEffect(() => {
-    if (session?.user) {
-      router.push(redirect || '/');
-    }
-  }, [router, session, redirect]);
 
   const {
     handleSubmit,
@@ -28,20 +20,30 @@ export default function LoginScreen() {
   } = useForm();
   const submitHandler = async ({ email, password }) => {
     setLoading(true);
+
     try {
-      const result = await signIn('credentials', {
-        redirect: false,
-        email,
-        password,
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
       });
 
-      if (result.error) {
+      if (res.status == 200) {
+        let data = await res.json();
+        sessionStorage.clear();
+        sessionStorage.setItem('user', JSON.stringify(data));
+        toast.success('login successful');
+        router.push('/');
+      } else {
         setLoading(false);
-        toast.error(result.error);
+        let response = await res.json();
+        toast.error(response.message);
       }
     } catch (err) {
       setLoading(false);
-      toast.error(getError(err));
+      toast.error(err);
     }
   };
   return (
@@ -130,9 +132,7 @@ export default function LoginScreen() {
 
                       <p className="text-base text-[#adadad]">
                         Don&apos;t have an account? &nbsp;
-                        <Link href={`/register?redirect=${redirect || '/'}`}>
-                          Register
-                        </Link>
+                        <Link href={`/register`}>Register</Link>
                       </p>
                     </div>
                   </div>

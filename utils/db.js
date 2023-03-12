@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const connection = {};
 
@@ -38,4 +38,4 @@ function convertDocToObj(doc) {
 }
 
 const db = { connect, disconnect, convertDocToObj };
-export default db;
+module.exports = db;

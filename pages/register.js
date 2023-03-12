@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import React, { Fragment, useEffect, useState } from 'react';
-import { signIn, useSession } from 'next-auth/react';
+import React, { Fragment, useState } from 'react';
+// import { useSession } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 import Layout from '../components/Layout';
 import { toast } from 'react-toastify';
@@ -9,17 +9,10 @@ import { useRouter } from 'next/router';
 import bcrypt from 'bcryptjs';
 
 export default function LoginScreen() {
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
-  const { redirect } = router.query;
-
-  useEffect(() => {
-    if (session?.user) {
-      router.push(redirect || '/');
-    }
-  }, [router, session, redirect]);
 
   const {
     handleSubmit,
@@ -46,12 +39,9 @@ export default function LoginScreen() {
           body: JSON.stringify({ name, email, password: hash_password }),
         });
         if (res.status === 201) {
-          setLoading(false);
-          await signIn('credentials', {
-            redirect: false,
-            email,
-            password,
-          });
+          let data = await res.json();
+          sessionStorage.clear();
+          sessionStorage.setItem('user', JSON.stringify(data));
           toast.success('User registered successfully');
           router.push('/');
         } else {

@@ -1,15 +1,18 @@
-import React, { Fragment } from 'react';
-import { useSession } from 'next-auth/react';
+import React, { Fragment, useState, useEffect } from 'react';
+// import { useSession } from 'next-auth/react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { ToastContainer } from 'react-toastify';
 
 export default function DashboardScreen({ title, children }) {
-  const { data: session } = useSession();
+  const [session, setSession] = useState();
 
+  useEffect(() => {
+    setSession(JSON.parse(sessionStorage.getItem('user')));
+  }, []);
   return (
     <Fragment>
-      {session?.user.isAdmin ? (
+      {session?.isAdmin ? (
         <main>
           <Head>
             <title>{'Admin - Riere Farm'}</title>
@@ -77,7 +80,9 @@ export default function DashboardScreen({ title, children }) {
 
           <section>{children}</section>
         </main>
-      ) : null}
+      ) : (
+        <div className="text-red-600">Not allowed to view this page</div>
+      )}
     </Fragment>
   );
 }

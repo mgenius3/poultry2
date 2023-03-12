@@ -1,12 +1,15 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import data from '../utils/data';
 import Link from 'next/link';
-import { useSession } from 'next-auth/react';
+// import { useSession } from 'next-auth/react';
 export default function Product() {
   const [newData, setNewData] = useState(data.products);
 
-  const { data: session } = useSession();
+  const [session, setSession] = useState();
 
+  useEffect(() => {
+    setSession(JSON.parse(sessionStorage.getItem('user')));
+  }, []);
   const handleProductData = (e) => {
     if (!e.target.value || e.target.value == '')
       return setNewData(data.products);
@@ -71,7 +74,7 @@ export default function Product() {
               >
                 <a
                   href={
-                    session?.user
+                    session?.name
                       ? `https://wa.me/2347032273102/?text=poultry:${product?.name}`
                       : '/login'
                   }

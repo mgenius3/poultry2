@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { signOut, useSession } from 'next-auth/react';
+import React, { useState, useEffect } from 'react';
+// import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { Menu, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
@@ -7,16 +7,19 @@ import { LogOutActiveIcon, LogOutInactiveIcon } from '../utils/helpers';
 import { useRouter } from 'next/router';
 
 export default function Nav() {
-  const { status, data: session } = useSession();
+  // const { status, data: session } = useSession();
   const [menu, setMenu] = useState(false);
   const router = useRouter();
-
-  const logoutClickHander = () => {
-    signOut({
-      callbackUrl: '/login',
-    });
+  const [session, setSession] = useState();
+  const logoutClickHandler = () => {
+    sessionStorage.removeItem('user');
+    sessionStorage.clear();
+    router.push('/login');
   };
 
+  useEffect(() => {
+    setSession(JSON.parse(sessionStorage.getItem('user')));
+  }, []);
   return (
     <nav id="header" className="w-full z-30 top-0 py-1 shadow-md">
       <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">
@@ -109,9 +112,7 @@ export default function Nav() {
           className="order-2 md:order-3 flex items-center z-30"
           id="nav-content"
         >
-          {status === 'loading' ? (
-            'loading...'
-          ) : session?.user ? (
+          {session ? (
             <Menu as="div" className="relative inline-block text-left">
               <div>
                 <Menu.Button className="inline-flex w-full justify-center rounded-md  px-4 py-2 text-sm font-medium hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 ">
@@ -124,7 +125,7 @@ export default function Nav() {
                       width={20}
                     />
                   </Link>
-                  <small>{session.user.name}</small>
+                  <small>{session.name}</small>
                 </Menu.Button>
               </div>
               <Transition
@@ -138,7 +139,7 @@ export default function Nav() {
               >
                 <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                   <div className="px-1 py-1 ">
-                    {session?.user?.isAdmin ? (
+                    {session?.isAdmin ? (
                       <Menu.Item>
                         {({ active }) => (
                           <button
@@ -162,7 +163,7 @@ export default function Nav() {
                     <Menu.Item>
                       {({ active }) => (
                         <button
-                          onClick={logoutClickHander}
+                          onClick={logoutClickHandler}
                           className={`${
                             active
                               ? 'bg-violet-500 text-white'

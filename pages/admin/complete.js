@@ -43,24 +43,30 @@ export default function AdminUserScreen() {
                     </tr>
                   </thead>
                   <tbody>
-                    {data?.map((order, i) => (
-                      <tr key={i}>
-                        <td className="text-dark border-b border-l border-[#E8E8E8] bg-[#F3F6FF] py-2 px-1 text-center text-base font-medium">
-                          <small> {order?.id}</small>
-                        </td>
-                        <td className="text-dark border-b border-l border-[#E8E8E8] bg-[#F3F6FF] py-2 px-1 text-center text-base font-medium">
-                          <small> {order?.name}</small>
-                        </td>
-                        <td className="text-dark border-b border-[#E8E8E8] bg-white py-2 px-1 text-center text-base font-medium">
-                          <small>{order?.productName}</small>
-                        </td>
-                        <td className="text-dark border-b border-[#E8E8E8] bg-white py-2 px-1 text-center text-base font-medium">
-                          <small>
-                            {new Date(order?.updatedAt).toDateString()}
-                          </small>
-                        </td>
+                    {data ? (
+                      data?.map((order, i) => (
+                        <tr key={i}>
+                          <td className="text-dark border-b border-l border-[#E8E8E8] bg-[#F3F6FF] py-2 px-1 text-center text-base font-medium">
+                            <small> {order?.id}</small>
+                          </td>
+                          <td className="text-dark border-b border-l border-[#E8E8E8] bg-[#F3F6FF] py-2 px-1 text-center text-base font-medium">
+                            <small> {order?.name}</small>
+                          </td>
+                          <td className="text-dark border-b border-[#E8E8E8] bg-white py-2 px-1 text-center text-base font-medium">
+                            <small>{order?.productName}</small>
+                          </td>
+                          <td className="text-dark border-b border-[#E8E8E8] bg-white py-2 px-1 text-center text-base font-medium">
+                            <small>
+                              {new Date(order?.updatedAt).toDateString()}
+                            </small>
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td>loading...</td>
                       </tr>
-                    ))}
+                    )}
                   </tbody>
                 </table>
               </div>

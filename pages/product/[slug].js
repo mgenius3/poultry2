@@ -1,16 +1,19 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '../../components/Layout';
 import data from '../../utils/data';
 import Link from 'next/link';
-import { useSession } from 'next-auth/react';
+// import { useSession } from 'next-auth/react';
 
 export default function ProductScreen() {
   const { query } = useRouter();
   const { slug } = query;
-  const { data: session } = useSession();
-
+  // const { data: session? } = useSession();
+  const [session, setSession] = useState();
+  useEffect(() => {
+    setSession(JSON.parse(sessionStorage.getItem('user')));
+  }, []);
   const product = data.products.find((x) => x.slug === slug);
   if (!product) {
     return <div>Product Not Found</div>;
@@ -57,13 +60,13 @@ export default function ProductScreen() {
                 <li>
                   <h1 className="text-lg">
                     <b>User Name: </b>
-                    <small>{session?.user.name}</small>
+                    <small>{session?.name}</small>
                   </h1>
                 </li>
                 <li>
                   <h1 className="text-lg">
                     <b>Email: </b>
-                    <small>{session?.user.email}</small>
+                    <small>{session?.email}</small>
                   </h1>
                 </li>
                 <li>
@@ -86,8 +89,8 @@ export default function ProductScreen() {
 
             <Link
               href={
-                session?.user
-                  ? `https://wa.me/2347032273102/?text=${session?.user.email}: ${product?.name} -> (order)`
+                session?.name
+                  ? `https://wa.me/2347032273102/?text=${session?.email}: ${product?.name} -> (order)`
                   : '/login'
               }
             >
@@ -95,12 +98,8 @@ export default function ProductScreen() {
                 <button
                   className="primary-button w-full h-10 text-lg"
                   onClick={() =>
-                    session?.user
-                      ? bookNow(
-                          session?.user._id,
-                          session?.user.name,
-                          product?.name
-                        )
+                    session
+                      ? bookNow(session?._id, session?.name, product?.name)
                       : null
                   }
                 >

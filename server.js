@@ -69,42 +69,140 @@ const handle = app.getRequestHandler();
 
 const port = process.env.PORT || 3000;
 
+const User = require('./models/User');
+const Order = require('./models/Order');
+const db = require('./utils/db');
+const bcryptjs = require('bcryptjs');
+
 app.prepare().then(() => {
   const server = express();
-
-  // User data for testing purposes
-  const users = [
-    { id: 1, username: 'user1', password: 'pass1' },
-    { id: 2, username: 'user2', password: 'pass2' },
-    { id: 3, username: 'user3', password: 'pass3' },
-  ];
 
   // Middleware to parse JSON request body
   server.use(bodyParser.json());
 
   // Route for checking user exists
-  server.get('/api/users/:username', (req, res) => {
-    const user = users.find((u) => u.username === req.params.username);
-    if (user) {
-      res.status(200).send('User found!');
-    } else {
-      res.status(404).send('User not found!');
+  server.post('/api/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+      await db.connect();
+      const user = await User.findOne({
+        email,
+      });
+
+      await db.disconnect();
+      if (user && bcryptjs.compareSync(password, user.password)) {
+        res.status(200).json({
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          isAdmin: user.isAdmin,
+        });
+      } else res.status(404).json({ message: 'Invalid email or password' });
+    } catch (err) {
+      res.status(500).json({ msg: 'error occured, try again later' });
+      throw err(err.message);
     }
   });
 
   // Route for logging in user
-  server.post('/api/login', (req, res) => {
-    const { username, password } = req.body;
-    const user = users.find(
-      (u) => u.username === username && u.password === password
-    );
-    if (user) {
-      res.status(200).send('Login successful!');
-    } else {
-      res.status(401).send('Invalid login credentials!');
+  server.post('/api/register', async (req, res) => {
+    await db.connect();
+    let { name, email, password } = req.body;
+
+    try {
+      // Check if user already exists in database
+      let user = await User.findOne({ email });
+      if (user) {
+        return res
+          .status(400)
+          .json({ message: 'User with that email already exists' });
+      }
+
+      // Create new user object
+      user = new User({ name, email, password });
+
+      // Save new user to database
+      let newuser = await user.save();
+
+      res.status(201).json({
+        _id: newuser._id,
+        name: newuser.name,
+        email: newuser.email,
+        isAdmin: newuser.isAdmin,
+      });
+    } catch (err) {
+      console.log(err.message);
+      res.status(500).json({ message: 'Server error' });
+      await db.disconnect();
     }
   });
 
+  ///Admin
+  server.get('/api/order', async (req, res) => {
+    try {
+      await db.connect();
+      // fetch all user
+      let order = await Order.find();
+      if (order) {
+        await db.disconnect();
+        return res.status(200).json({ data: order });
+      }
+    } catch (err) {
+      res.status(500).json({ message: 'Server error' });
+    }
+  });
+
+  server.post('/api/order', async (req, res) => {
+    const { id, name, productName } = req.body;
+    await db.connect();
+    try {
+      let order = new Order({ id, name, productName });
+      //save to db
+      await order.save();
+
+      res.status(200).json({ message: 'successful' });
+      await db.disconnect();
+    } catch (err) {
+      res.status(500).json({ message: 'server error, please try again' });
+    }
+  });
+
+  server.post('/api/complete', async (req, res) => {
+    const { id } = req.body;
+    await db.connect();
+    try {
+      //save to db
+      let update = await Order.findOneAndUpdate(
+        { _id: id },
+        {
+          status: 'complete',
+        }
+      );
+
+      if (update) res.status(200).json({ message: 'update successfully' });
+      else {
+        res.status(404).json({ message: 'update unsuccessful' });
+      }
+      await db.disconnect();
+    } catch (err) {
+      res.status(500).json({ message: 'server error, please try again' });
+      await db.disconnect();
+    }
+  });
+
+  server.get('/api/user', async (req, res) => {
+    try {
+      await db.connect();
+      // Check if user already exists in database
+      let user = await User.find();
+      if (user) {
+        return res.status(200).json({ data: user });
+      }
+    } catch (err) {
+      res.status(500).json({ message: 'Server error' });
+    }
+  });
   // Default route handler
   server.get('*', (req, res) => {
     return handle(req, res);

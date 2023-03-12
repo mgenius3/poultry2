@@ -5,17 +5,22 @@ exports.id = 888;
 exports.ids = [888];
 exports.modules = {
 
-/***/ 8510:
+/***/ 6419:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var next_auth_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1649);
-/* harmony import */ var next_auth_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_auth_react__WEBPACK_IMPORTED_MODULE_1__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  "default": () => (/* binding */ _app)
+});
+
+// EXTERNAL MODULE: external "react/jsx-runtime"
+var jsx_runtime_ = __webpack_require__(997);
+;// CONCATENATED MODULE: external "next-auth/react"
+const react_namespaceObject = require("next-auth/react");
+;// CONCATENATED MODULE: ./pages/_app.js
 
 // import Layout from '@/components/Layout';
 // import SEO from '/components/SEO';
@@ -24,21 +29,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function MyApp({ Component , pageProps: { ...pageProps }  }) {
-    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(next_auth_react__WEBPACK_IMPORTED_MODULE_1__.SessionProvider, {
-        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(Component, {
+    return /*#__PURE__*/ jsx_runtime_.jsx(react_namespaceObject.SessionProvider, {
+        children: /*#__PURE__*/ jsx_runtime_.jsx(Component, {
             ...pageProps
         })
     });
 }
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MyApp);
+/* harmony default export */ const _app = (MyApp);
 
-
-/***/ }),
-
-/***/ 1649:
-/***/ ((module) => {
-
-module.exports = require("next-auth/react");
 
 /***/ }),
 
@@ -56,7 +54,7 @@ module.exports = require("react/jsx-runtime");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = (__webpack_exec__(8510));
+var __webpack_exports__ = (__webpack_exec__(6419));
 module.exports = __webpack_exports__;
 
 })();

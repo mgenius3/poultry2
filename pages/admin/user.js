@@ -37,21 +37,27 @@ export default function AdminUserScreen() {
                     </tr>
                   </thead>
                   <tbody>
-                    {data?.map((user, i) => (
-                      <tr key={i}>
-                        <td className="text-dark border-b border-l border-[#E8E8E8] bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium">
-                          <small> {user?.name}</small>
-                        </td>
-                        <td className="text-dark border-b border-[#E8E8E8] bg-white py-5 px-2 text-center text-base font-medium">
-                          <small>{user?.email}</small>
-                        </td>
-                        <td className="text-dark border-b border-[#E8E8E8] bg-white py-5 px-2 text-center text-base font-medium">
-                          <small>
-                            {new Date(user?.createdAt).toDateString()}
-                          </small>
-                        </td>
+                    {data ? (
+                      data?.map((user, i) => (
+                        <tr key={i}>
+                          <td className="text-dark border-b border-l border-[#E8E8E8] bg-[#F3F6FF] py-5 px-2 text-center text-base font-medium">
+                            <small> {user?.name}</small>
+                          </td>
+                          <td className="text-dark border-b border-[#E8E8E8] bg-white py-5 px-2 text-center text-base font-medium">
+                            <small>{user?.email}</small>
+                          </td>
+                          <td className="text-dark border-b border-[#E8E8E8] bg-white py-5 px-2 text-center text-base font-medium">
+                            <small>
+                              {new Date(user?.createdAt).toDateString()}
+                            </small>
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td>loading...</td>
                       </tr>
-                    ))}
+                    )}
                   </tbody>
                 </table>
               </div>

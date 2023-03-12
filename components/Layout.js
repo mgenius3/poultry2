@@ -21,7 +21,7 @@ export default function Layout({ title, children }) {
             name="description"
             content="Riere farm is a  poultry farm, offering fresh eggs and chicken for sale. Visit us today to learn more about our products and services"
           />
-          <meta charset="UTF-8" />
+          <meta charSet="UTF-8" />
           <meta
             name="keywords"
             content="poultry, chicken , eggs, farming, boiler, cat, fish,"

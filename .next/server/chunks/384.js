@@ -16,16 +16,17 @@ exports.modules = {
 /* harmony import */ var _utils_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3449);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1664);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var next_auth_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1649);
-/* harmony import */ var next_auth_react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_auth_react__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
 
-
+// import { useSession } from 'next-auth/react';
 function Product() {
     const { 0: newData , 1: setNewData  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(_utils_data__WEBPACK_IMPORTED_MODULE_2__/* ["default"].products */ .Z.products);
-    const { data: session  } = (0,next_auth_react__WEBPACK_IMPORTED_MODULE_4__.useSession)();
+    const { 0: session , 1: setSession  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)();
+    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(()=>{
+        setSession(JSON.parse(sessionStorage.getItem("user")));
+    }, []);
     const handleProductData = (e)=>{
         if (!e.target.value || e.target.value == "") return setNewData(_utils_data__WEBPACK_IMPORTED_MODULE_2__/* ["default"].products */ .Z.products);
         else {
@@ -86,7 +87,7 @@ function Product() {
                                 className: "w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col",
                                 children: [
                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-                                        href: session?.user ? `https://wa.me/2347032273102/?text=poultry:${product?.name}` : "/login",
+                                        href: session?.name ? `https://wa.me/2347032273102/?text=poultry:${product?.name}` : "/login",
                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
                                             className: "hover:grow hover:shadow-lg",
                                             src: product?.image
