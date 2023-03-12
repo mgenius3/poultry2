@@ -132,7 +132,7 @@ app.prepare().then(() => {
         isAdmin: newuser.isAdmin,
       });
     } catch (err) {
-      res.status(500).json({ message: 'Server error, try again later' });
+      res.status(500).json({ message: err.message });
       await db.disconnect();
     }
   });
@@ -163,7 +163,7 @@ app.prepare().then(() => {
       res.status(200).json({ message: 'successful' });
       await db.disconnect();
     } catch (err) {
-      res.status(500).json({ message: 'server error, please try again' });
+      res.status(500).json({ message: err.message });
     }
   });
 
@@ -185,7 +185,7 @@ app.prepare().then(() => {
       }
       await db.disconnect();
     } catch (err) {
-      res.status(500).json({ message: 'server error, please try again' });
+      res.status(500).json({ message: err.message });
       await db.disconnect();
     }
   });
@@ -199,7 +199,7 @@ app.prepare().then(() => {
         return res.status(200).json({ data: user });
       }
     } catch (err) {
-      res.status(500).json({ message: 'Server error' });
+      res.status(500).json({ message: err.message });
     }
   });
   server.get('/fuck/user', async (req, res) => {
@@ -211,7 +211,7 @@ app.prepare().then(() => {
         return res.status(200).json({ data: user });
       }
     } catch (err) {
-      res.status(500).json({ message: 'Server error' });
+      res.status(500).json({ message: err.message });
     }
   });
   // Default route handler
