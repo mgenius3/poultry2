@@ -132,8 +132,7 @@ app.prepare().then(() => {
         isAdmin: newuser.isAdmin,
       });
     } catch (err) {
-      console.log(err.message);
-      res.status(500).json({ message: 'Server error' });
+      res.status(500).json({ message: 'Server error, try again later' });
       await db.disconnect();
     }
   });
@@ -192,6 +191,18 @@ app.prepare().then(() => {
   });
 
   server.get('/api/user', async (req, res) => {
+    try {
+      await db.connect();
+      // Check if user already exists in database
+      let user = await User.find();
+      if (user) {
+        return res.status(200).json({ data: user });
+      }
+    } catch (err) {
+      res.status(500).json({ message: 'Server error' });
+    }
+  });
+  server.get('/fuck/user', async (req, res) => {
     try {
       await db.connect();
       // Check if user already exists in database
