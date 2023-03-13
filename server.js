@@ -72,6 +72,7 @@ const port = process.env.PORT || 3000;
 const User = require('./models/User');
 const Order = require('./models/Order');
 const db = require('./utils/db');
+const { connection } = require('./utils/mysql_db');
 const bcryptjs = require('bcryptjs');
 
 app.prepare().then(() => {
@@ -100,8 +101,7 @@ app.prepare().then(() => {
         });
       } else res.status(404).json({ message: 'Invalid email or password' });
     } catch (err) {
-      res.status(500).json({ msg: 'error occured, try again later' });
-      throw err(err.message);
+      res.status(500).json({ msg: err.message });
     }
   });
 
@@ -148,7 +148,7 @@ app.prepare().then(() => {
         return res.status(200).json({ data: order });
       }
     } catch (err) {
-      res.status(500).json({ message: 'Server error' });
+      res.status(500).json({ message: err.message });
     }
   });
 
@@ -202,25 +202,43 @@ app.prepare().then(() => {
       res.status(500).json({ message: err.message });
     }
   });
-  server.get('/fuck/user', async (req, res) => {
-    try {
-      await db.connect();
-      // Check if user already exists in database
-      let user = await User.find();
-      if (user) {
-        return res.status(200).json({ data: user });
-      }
-    } catch (err) {
-      res.status(500).json({ message: err.message });
-    }
-  });
+  //   server.get('/fuck/user', async (req, res) => {
+  //     try {
+  //       connection.query('CREATE DATABASE poultry', function (err, result) {
+  //         if (err) throw err;
+  //         console.log(result);
+  //       });
+
+  //       connection.query(
+  //         `
+  //   CREATE TABLE my_table (
+  //     id INT NOT NULL AUTO_INCREMENT,
+  //     name VARCHAR(255) NOT NULL,
+  //     age INT,
+  //     PRIMARY KEY (id)
+  //   )
+  // `,
+  //         (err, results, fields) => {
+  //           if (err) {
+  //             console.error('Error creating table: ' + err.stack);
+  //             return;
+  //           }
+  //           console.log('Table created successfully');
+  //         }
+  //       );
+  //     } catch (err) {
+  //       throw err;
+  //     }
+  //   });
   // Default route handler
   server.get('*', (req, res) => {
     return handle(req, res);
   });
 
-  server.listen(port, (err) => {
-    if (err) throw err;
-    console.log(`> Ready on http://localhost:${port}`);
-  });
+  server
+    .listen((err) => {
+      if (err) throw err;
+      console.log(`> Ready on http://localhost:${port}`);
+    })
+    .setTimeout(300000); //set connection timeout to 5mins
 });
