@@ -236,7 +236,7 @@ app.prepare().then(() => {
   });
 
   server
-    .listen((err) => {
+    .listen(port, (err) => {
       if (err) throw err;
       console.log(`> Ready on http://localhost:${port}`);
     })
