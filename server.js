@@ -1,10 +1,10 @@
-// const { createServer } = require('https');
+// const { createServer } = require('http');
 // const { parse } = require('url');
 // const next = require('next');
 
 // const dev = process.env.NODE_ENV !== 'production';
-// const hostname = 'rierefarm.com.ng';
-// const port = process.env.PORT;
+// const hostname = 'localhost';
+// const port = process.env.PORT || 3000;
 
 // const app = next({ dev, hostname, port });
 // const handle = app.getRequestHandler();
@@ -67,12 +67,12 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 const User = require('./models/User');
 const Order = require('./models/Order');
 const db = require('./utils/db');
-const { connection } = require('./utils/mysql_db');
+// const { connection } = require('./utils/mysql_db');
 const bcryptjs = require('bcryptjs');
 
 app.prepare().then(() => {
@@ -235,10 +235,9 @@ app.prepare().then(() => {
     return handle(req, res);
   });
 
-  server
-    .listen(port, (err) => {
-      if (err) throw err;
-      console.log(`> Ready on http://localhost:${port}`);
-    })
-    .setTimeout(300000); //set connection timeout to 5mins
+  server.listen((err) => {
+    if (err) throw err;
+    console.log(`> Ready on http://localhost:${port}`);
+  });
+  // .setTimeout(300000); //set connection timeout to 5mins
 });
