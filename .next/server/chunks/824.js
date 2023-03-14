@@ -31,7 +31,7 @@ react_toastify__WEBPACK_IMPORTED_MODULE_4__ = (__webpack_async_dependencies__.th
 function DashboardScreen({ title , children  }) {
     const { 0: session , 1: setSession  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)();
     (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(()=>{
-        setSession(JSON.parse(sessionStorage.getItem("user")));
+        setSession(JSON.parse(localStorage.getItem("user")));
     }, []);
     return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
         children: session?.isAdmin ? /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("main", {

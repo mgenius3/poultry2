@@ -12,7 +12,7 @@ export default function ProductScreen() {
   // const { data: session? } = useSession();
   const [session, setSession] = useState();
   useEffect(() => {
-    setSession(JSON.parse(sessionStorage.getItem('user')));
+    setSession(JSON.parse(localStorage.getItem('user')));
   }, []);
   const product = data.products.find((x) => x.slug === slug);
   if (!product) {

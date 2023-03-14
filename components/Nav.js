@@ -12,13 +12,13 @@ export default function Nav() {
   const router = useRouter();
   const [session, setSession] = useState();
   const logoutClickHandler = () => {
-    sessionStorage.removeItem('user');
-    sessionStorage.clear();
+    localStorage.removeItem('user');
+    localStorage.clear();
     router.push('/login');
   };
 
   useEffect(() => {
-    setSession(JSON.parse(sessionStorage.getItem('user')));
+    setSession(JSON.parse(localStorage.getItem('user')));
   }, []);
   return (
     <nav id="header" className="w-full z-30 top-0 py-1 shadow-md">

@@ -8,7 +8,7 @@ export default function DashboardScreen({ title, children }) {
   const [session, setSession] = useState();
 
   useEffect(() => {
-    setSession(JSON.parse(sessionStorage.getItem('user')));
+    setSession(JSON.parse(localStorage.getItem('user')));
   }, []);
   return (
     <Fragment>

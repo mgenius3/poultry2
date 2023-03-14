@@ -6,7 +6,7 @@ import Layout from '../components/Layout';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router';
-import bcrypt from 'bcryptjs';
+// import bcrypt from 'bcryptjs';
 
 export default function LoginScreen() {
   // const { data: session } = useSession();
@@ -29,19 +29,20 @@ export default function LoginScreen() {
       setLoading(false);
     } else {
       //HASH PASSWORD
-      const hash_password = bcrypt.hashSync(password);
+      // const hash_password = bcrypt.hashSync(password);
       try {
         const res = await fetch('/api/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ name, email, password: hash_password }),
+          // body: JSON.stringify({ name, email, password: hash_password }),
+          body: JSON.stringify({ name, email, password }),
         });
         if (res.status === 201) {
           let data = await res.json();
-          sessionStorage.clear();
-          sessionStorage.setItem('user', JSON.stringify(data));
+          localStorage.clear();
+          localStorage.setItem('user', JSON.stringify(data));
           toast.success('User registered successfully');
           router.push('/');
         } else {

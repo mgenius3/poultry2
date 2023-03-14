@@ -457,12 +457,12 @@ function Nav() {
     const router = (0,next_router__WEBPACK_IMPORTED_MODULE_5__.useRouter)();
     const { 0: session , 1: setSession  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)();
     const logoutClickHandler = ()=>{
-        sessionStorage.removeItem("user");
-        sessionStorage.clear();
+        localStorage.removeItem("user");
+        localStorage.clear();
         router.push("/login");
     };
     (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(()=>{
-        setSession(JSON.parse(sessionStorage.getItem("user")));
+        setSession(JSON.parse(localStorage.getItem("user")));
     }, []);
     return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("nav", {
         id: "header",

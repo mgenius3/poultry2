@@ -32,8 +32,8 @@ export default function LoginScreen() {
 
       if (res.status == 200) {
         let data = await res.json();
-        sessionStorage.clear();
-        sessionStorage.setItem('user', JSON.stringify(data));
+        localStorage.clear();
+        localStorage.setItem('user', JSON.stringify(data));
         toast.success('login successful');
         router.push('/');
       } else {
