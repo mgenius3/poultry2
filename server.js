@@ -104,7 +104,6 @@ app.prepare().then(() => {
     //   res.status(500).json({ msg: err.message });
     // }
     const { email, password } = req.body;
-    console.log(email, password);
     fs.readFile('db/user.json', 'utf8', (err, data) => {
       if (err) {
         if (err.code == 'ENOENT') {
@@ -114,7 +113,6 @@ app.prepare().then(() => {
         } else res.status(500).json({ message: 'error, please try again' });
       } else {
         let auth = JSON.parse(data).find((a) => {
-          console.log(a);
           return a.email == email && a.password == password;
         });
         if (auth) res.status(200).json(auth);
@@ -170,7 +168,6 @@ app.prepare().then(() => {
           });
           fs.writeFile('db/user.json', JSON.stringify(new_data), (err) => {
             if (err) throw err.message;
-            console.log('Data written to file');
           });
         } else {
           res.status(500).json({ msg: 'server error, please try again' });
@@ -189,7 +186,6 @@ app.prepare().then(() => {
             ...old_data,
             { name, email, password, isAdmin, _id, createdAt: new Date() },
           ];
-          console.log(new_data);
           fs.writeFile('db/user.json', JSON.stringify(new_data), (err) => {
             if (err) throw err.message;
 

@@ -1,6 +1,17 @@
-// import { NextApiResponse } from 'next';
-
-const Sitemap = () => {};
+import React from 'react';
+const Sitemap = () => {
+  return (
+    <>
+      {/*
+        Add your website URLs here
+        Note: the `key` prop is required for React to track changes in the array
+      */}
+      {['/', '/about', '/product', '/contact'].map((page) => (
+        <url key={page}>{`${'https://rierefarm.com.ng'}${page}`}</url>
+      ))}
+    </>
+  );
+};
 
 export default Sitemap;
 
@@ -9,17 +20,19 @@ export const getServerSideProps = async ({ res }) => {
   res.write(`<?xml version="1.0" encoding="UTF-8"?>\n`);
   res.write(`<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`);
 
-  // Add your website URLs here
-  const pages = ['/', '/about', '/product', '/contact'];
+  const { stream } = res; // Get the response stream
 
-  const baseUrl = 'https://rierefarm.com.ng';
+  // Pipe the XML data to the response stream
+  stream.write('<?xml version="1.0" encoding="UTF-8"?>\n');
+  stream.write(
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+  );
+  ['/', '/about', '/product', '/contact'].forEach((page) => {
+    const url = `${'https://rierefarm.com.ng'}${page}`;
+    stream.write(`<url><loc>${url}</loc></url>\n`);
+  });
+  stream.write('</urlset>\n');
 
-  for (const page of pages) {
-    const url = `${baseUrl}${page}`;
-    res.write(`<url><loc>${url}</loc></url>\n`);
-  }
-
-  res.write(`</urlset>\n`);
   res.end();
 
   return { props: {} };
