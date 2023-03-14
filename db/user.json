@@ -13,5 +13,19 @@
     "isAdmin": true,
     "_id": 1001,
     "createdAt": "2023-03-14T14:40:24.651Z"
+  },
+  {
+    "name": "mgenius",
+    "email": "mgenius303@gmail.com",
+    "password": "123456",
+    "_id": 1002,
+    "createdAt": "2023-03-14T15:11:14.214Z"
+  },
+  {
+    "name": "Chk",
+    "email": "mercy4fans@gmaiil.com",
+    "password": "Mydiamond@123",
+    "_id": 1003,
+    "createdAt": "2023-03-14T15:14:08.796Z"
   }
 ]
