@@ -66,7 +66,7 @@ const next = require('next');
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
-const { SitemapStream, streamToPromise } = require('sitemap');
+// const { SitemapStream, streamToPromise } = require('sitemap');
 const port = process.env.PORT || 3000;
 
 const User = require('./models/User');
@@ -78,34 +78,34 @@ const fs = require('fs');
 const path = require('path');
 
 // Define the URLs of your website
-const urls = [
-  { url: '/', changefreq: 'monthly', priority: 1 },
-  { url: '/about', changefreq: 'monthly', priority: 0.8 },
-  { url: '/product', changefreq: 'monthly', priority: 0.5 },
-  { url: '/contact', changefreq: 'monthly', priority: 0.3 },
-];
+// const urls = [
+//   { url: '/', changefreq: 'monthly', priority: 1 },
+//   { url: '/about', changefreq: 'monthly', priority: 0.8 },
+//   { url: '/product', changefreq: 'monthly', priority: 0.5 },
+//   { url: '/contact', changefreq: 'monthly', priority: 0.3 },
+// ];
 
-// Create a sitemap stream
-const sitemapStream = new SitemapStream({
-  hostname: 'https://rierefarm.com.ng',
-});
+// // Create a sitemap stream
+// const sitemapStream = new SitemapStream({
+//   hostname: 'https://rierefarm.com.ng',
+// });
 
-// Add the URLs to the sitemap
-urls.forEach((url) => {
-  sitemapStream.write(url);
-});
+// // Add the URLs to the sitemap
+// urls.forEach((url) => {
+//   sitemapStream.write(url);
+// });
 
-// End the stream
-sitemapStream.end();
+// // End the stream
+// sitemapStream.end();
 
-// Wait for the stream to be written
-streamToPromise(sitemapStream).then((sitemap) => {
-  // Write the sitemap to a file
-  fs.writeFileSync(
-    path.join(__dirname, 'public/sitemap.xml'),
-    sitemap.toString()
-  );
-});
+// // Wait for the stream to be written
+// streamToPromise(sitemapStream).then((sitemap) => {
+//   // Write the sitemap to a file
+//   fs.writeFileSync(
+//     path.join(__dirname, 'public/sitemap.xml'),
+//     sitemap.toString()
+//   );
+// });
 
 app.prepare().then(() => {
   const server = express();
@@ -115,7 +115,7 @@ app.prepare().then(() => {
 
   // Serve the sitemap.xml file
   server.get('/sitemap.xml', (req, res) => {
-    const filePath = path.join(__dirname, 'public/sitemap.xml');
+    const filePath = path.join(__dirname, 'sitemap.xml');
     fs.readFile(filePath, (err, data) => {
       if (err) {
         res.status(404).end();
