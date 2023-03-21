@@ -125,7 +125,7 @@ export default function Nav() {
                       width={20}
                     />
                   </Link>
-                  <small>{session.name}</small>
+                  <small>{session?.name}</small>
                 </Menu.Button>
               </div>
               <Transition

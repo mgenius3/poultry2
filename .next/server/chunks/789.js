@@ -370,7 +370,7 @@ function Layout({ title , children  }) {
                         }),
                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
                             name: "keywords",
-                            content: "poultry, chicken , eggs, farming, boiler, cat, fish,"
+                            content: "poultry, chicken , eggs, farming, boiler, cat, fish, rierefarm, rierefarm.com.ng"
                         }),
                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
                             name: "author",
@@ -592,7 +592,7 @@ function Nav() {
                                             })
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("small", {
-                                            children: session.name
+                                            children: session?.name
                                         })
                                     ]
                                 })

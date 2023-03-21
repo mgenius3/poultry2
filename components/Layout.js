@@ -24,7 +24,7 @@ export default function Layout({ title, children }) {
           <meta charSet="UTF-8" />
           <meta
             name="keywords"
-            content="poultry, chicken , eggs, farming, boiler, cat, fish,"
+            content="poultry, chicken , eggs, farming, boiler, cat, fish, rierefarm, rierefarm.com.ng"
           />
           <meta name="author" content="Riere Farm" />
           <meta

@@ -1,6 +1,7 @@
 {
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
   "/about": "pages/about.html",
   "/admin/complete": "pages/admin/complete.html",
   "/admin": "pages/admin.html",
@@ -12,6 +13,5 @@
   "/product/[slug]": "pages/product/[slug].html",
   "/product": "pages/product.html",
   "/register": "pages/register.html",
-  "/_document": "pages/_document.js",
   "/404": "pages/404.html"
 }
